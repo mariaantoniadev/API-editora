@@ -65,7 +65,7 @@ function Titulo() {
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
           <ul className="flex flex-col font-medium mt-4 rounded-lg bg-orange-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-orange-800 md:dark:bg-transparent dark:border-orange-700">
-            <li>
+            <li className="text-white">
               {idClienteLogado ? (
                 <div>
                   {nomeClienteLogado} -
