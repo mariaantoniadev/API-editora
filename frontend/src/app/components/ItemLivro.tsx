@@ -24,7 +24,7 @@ function ItemLivro({ livro }: { livro: livroProps }) {
           {livro.genero} - {livro.autor}.
         </p>
         <p className="mb-3 font-bold">
-          Alugue por R$: {Number(livro.preco).toLocaleString("pt-br", {minimumFractionDigits: 2})}
+          Compre por R$: {Number(livro.preco).toLocaleString("pt-br", {minimumFractionDigits: 2})}
         </p>
         <p className="text-sm text-gray-500 dark:text-white mb-2">
           {livro.sinopse}
