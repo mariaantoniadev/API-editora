@@ -48,9 +48,10 @@ export default async function Home() {
           O lugar que você procura!
         </span>
       </h1>
-      <h1 className="mt-5 mb-4 text-2xl font-bold leading-none tracking-tight text-gray-900 lg:text-3xl dark:text-white">
+      <h1 id="livros" className="mt-5 mb-4 text-2xl font-bold leading-none tracking-tight text-gray-900 lg:text-3xl dark:text-white">
         Confira nossos livros:
       </h1>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
         {listaLivros}
       </div>
