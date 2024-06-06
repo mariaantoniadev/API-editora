@@ -61,7 +61,7 @@ export default function Avaliacoes() {
 
       <div>
         <h2 className="mt-2 font-bold text-2xl">
-          Avaliações dos Clientes do CineClube<br />
+          Avaliações dos Leitores da Editora<br />
         </h2>
         <table className="mt-3 w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

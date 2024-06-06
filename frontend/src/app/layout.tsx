@@ -6,7 +6,7 @@ import ClienteProvider from "./context/ClienteContext";
 export const metadata: Metadata = {
   title: "AvenidaVídeo",
   description: "Editora Indie. Publicação e Vendas de Livros",
-  keywords: ["Cinema", "Livros", "Avaliações de Livros"]
+  keywords: ["Editora", "Livros", "Avaliações de Livros"]
 };
 
 export default function RootLayout({
