@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-to-bottom': 'linear-gradient(to bottom, #FFEB82, #5C067C, #111215)',  
+        'gradient-to-bottom': 'linear-gradient(to bottom, #EEE5E9, #EEE5E9, #EEE5E9)',  
       },
       colors: {
         'custom-color': '#fffae5',

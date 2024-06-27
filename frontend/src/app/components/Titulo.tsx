@@ -28,16 +28,12 @@ function Titulo() {
 
   return (
     <nav
-      style={{ backgroundColor: "#111215", borderColor: "#111215" }}
-      className="border-blue-300 py-2 bg-blue-200 dark:bg-blue-900 dark:border-blue-100"
+      style={{ backgroundColor: "#0A0A0A", borderColor: "#0A0A0A" }}
+      className="border-blue-300 py-1.5 bg-blue-200 dark:bg-blue-900 dark:border-blue-100"
     >
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link
-          href="/"
-          className="flex items-center space-x-3 rtl:space-x-reverse"
-        >
-          <img src="./logo.png" className="h-16" alt="Editora Logo" />
-          <img src="./logoescrito.png" className="h-16" alt="Editora Logo" />
+      <div className="max-w-screen-xl flex items-center justify-between mx-auto px-4">
+        <Link href="/" className="flex items-center space-x-2 rtl:space-x-reverse">
+          <img src="./logoescrito.png" className="w-28" alt="Editora Logo" />
         </Link>
         <button
           data-collapse-toggle="navbar-solid-bg"
@@ -64,20 +60,19 @@ function Titulo() {
           </svg>
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
-          <ul className="flex flex-col font-medium mt-4 rounded-lg bg-orange-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-orange-800 md:dark:bg-transparent dark:border-orange-700">
+          <ul className="flex flex-col font-medium mt-4 rounded-lg bg-orange-50 md:space-x-6 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-orange-800 md:dark:bg-transparent dark:border-orange-700">
             <li className="text-white">
               {idClienteLogado ? (
-                <div>
-                  {nomeClienteLogado} -
+                <div className="flex items-center space-x-2">
+                  <span>{nomeClienteLogado}</span>
                   <span onClick={logout} style={{ cursor: "pointer" }}>
-                    {" "}
                     <RxExit className="inline" title="Sair" />
                   </span>
                 </div>
               ) : (
                 <Link
                   href="/login"
-                  className="block py-4 px-4 md:py-4 md:px-4 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 min-w-[90px] min-h-[50px]"
+                  className="block py-2 px-4 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
                   aria-current="page"
                 >
                   <RiUserShared2Line className="inline" /> Entrar
