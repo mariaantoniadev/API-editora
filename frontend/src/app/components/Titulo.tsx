@@ -5,10 +5,12 @@ import { RiUserShared2Line } from "react-icons/ri";
 import { RxExit } from "react-icons/rx";
 import { ClienteContext } from "../context/ClienteContext";
 import Swal from "sweetalert2";
+import { useRouter } from 'next/navigation';
+import { navigate } from './actions';
 
 function Titulo() {
-  const { idClienteLogado, nomeClienteLogado, mudaLogin } =
-    useContext(ClienteContext);
+  const { idClienteLogado, nomeClienteLogado, mudaLogin } = useContext(ClienteContext);
+  const router = useRouter();
 
   function logout() {
     Swal.fire({
@@ -26,60 +28,57 @@ function Titulo() {
     });
   }
 
+  const scrollToSection = () => {
+    const section = document.getElementById('livros');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <nav
-      style={{ backgroundColor: "#0A0A0A", borderColor: "#0A0A0A" }}
-      className="border-blue-300 py-1.5 bg-blue-200 dark:bg-blue-900 dark:border-blue-100"
-    >
+    <nav style={{ backgroundColor: "#0A0A0A", borderColor: "#0A0A0A" }} className="border-blue-300 py-1.5 bg-blue-200 dark:bg-blue-900 dark:border-blue-100">
       <div className="max-w-screen-xl flex items-center justify-between mx-auto px-4">
         <Link href="/" className="flex items-center space-x-2 rtl:space-x-reverse">
           <img src="./logoescrito.png" className="w-28" alt="Editora Logo" />
         </Link>
-        <button
-          data-collapse-toggle="navbar-solid-bg"
-          type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-orange-500 rounded-lg md:hidden hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-orange-200 dark:text-orange-400 dark:hover:bg-orange-700 dark:focus:ring-orange-600"
-          aria-controls="navbar-solid-bg"
-          aria-expanded="false"
-        >
-          <span className="sr-only">Open main menu</span>
-          <svg
-            className="w-5 h-5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 17 14"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M1 1h15M1 7h15M1 13h15"
-            />
-          </svg>
-        </button>
-        <div className="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
-          <ul className="flex flex-col font-medium mt-4 rounded-lg bg-orange-50 md:space-x-6 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-orange-800 md:dark:bg-transparent dark:border-orange-700">
-            <li className="text-white">
-              {idClienteLogado ? (
-                <div className="flex items-center space-x-2">
-                  <span>{nomeClienteLogado}</span>
-                  <span onClick={logout} style={{ cursor: "pointer" }}>
-                    <RxExit className="inline" title="Sair" />
-                  </span>
-                </div>
-              ) : (
-                <Link
-                  href="/login"
-                  className="block py-2 px-4 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-                  aria-current="page"
-                >
-                  <RiUserShared2Line className="inline" /> Entrar
-                </Link>
-              )}
-            </li>
-          </ul>
+        <div className="flex items-center space-x-4">
+          <form className="flex-1" action={navigate}>
+            <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Pesquisa</label>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                </svg>
+              </div>
+              <input type="search" name="pesq" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-black rounded-lg bg-transparent focus:ring-blue-500 focus:border-blue-500 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe título ou gênero do livro" required />
+              <button type="submit" className="text-blue-700 absolute end-2.5 bottom-2.5 border border-blue-700 hover:bg-blue-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:border-blue-600 dark:text-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Pesquisar</button>
+            </div>
+          </form>
+          <button
+            onClick={scrollToSection}
+            type="button"
+            className="ml-4 mt-1.5 focus:outline-none text-purple-700 border border-purple-700 hover:bg-purple-100 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:border-purple-600 dark:text-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
+            Lançamentos
+          </button>
+        </div>
+        <div className="flex items-center space-x-2">
+          {idClienteLogado ? (
+            <div className="flex items-center space-x-2">
+              <span>{nomeClienteLogado}</span>
+              <span onClick={logout} style={{ cursor: "pointer" }}>
+                <RxExit className="inline" title="Sair" />
+              </span>
+            </div>
+          ) : (
+            <Link
+              href="/login"
+              className="block py-2 px-4 focus:outline-none text-black bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+              aria-current="page"
+              style={{ backgroundColor: "#FDB96A" }}
+            >
+              <RiUserShared2Line className="inline" /> Entrar
+            </Link>
+          )}
         </div>
       </div>
     </nav>

@@ -96,3 +96,21 @@ export async function livroPesquisa(req, res) {
     res.status(400).send(error)
   }
 }
+
+export async function livroDestaqueUpdate(req, res) {
+
+  const { id } = req.params
+
+  try {
+
+    const livro = await Livro.findByPk(id)
+
+    const destacaLivro = await Livro.update({ destaque: !livro.destaque },
+      {
+        where: { id }
+      })
+    res.status(200).json(destacaLivro)
+  } catch (error) {
+    res.status(400).send(error)
+  }
+}

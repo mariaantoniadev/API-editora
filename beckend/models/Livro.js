@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../database/conecta.js';
+import { Admin } from './Admin.js';
 
 export const Livro = sequelize.define('livro', {
   id : {
@@ -47,3 +48,17 @@ export const Livro = sequelize.define('livro', {
     defaultValue: true
   }
 });
+
+Livro.belongsTo(Admin, {
+  foreignKey: {
+    name: 'admin_id',
+    defaultValue: 1,    // para os livros inicialmente cadastrados
+    allowNull: false
+  },
+  onDelete: 'RESTRICT',
+  onUpdate: 'CASCADE'
+})
+
+Admin.hasMany(Livro, {
+  foreignKey: 'admin_id'
+})

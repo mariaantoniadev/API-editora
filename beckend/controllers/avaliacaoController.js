@@ -102,3 +102,39 @@ export const avaliacaoDestroy = async (req, res) => {
 
   }
 }
+
+export const avaliacaoGraphEstrelas = async (req, res) => {
+
+  try {
+    const avaliacoes = await Avaliacao.findAll({
+      attributes: ['estrelas',
+        [sequelize.fn('count', sequelize.col('id')), 'num']],
+      group: 'estrelas'
+    });
+    res.status(200).json(avaliacoes)
+  } catch (error) {
+    res.status(400).send(error)
+  }
+}
+
+export const dadosGerais = async (req, res) => {
+
+  // new Date().toISOString() retorna "2023-11-21T21:12:05"
+  // com o split, separamos pelo "T" e pegamos só a 1ª parte
+  const dataAtual = new Date().toISOString().split("T")[0]
+
+  try {
+    const clientes = await Cliente.count()
+    const livros = await Livro.count()
+    const media = await Livro.findOne({
+      attributes: [[sequelize.fn('avg', sequelize.col('preco')), 'preco']]
+    })
+    const avaliacoes = await Avaliacao.count()
+    const avaliacoes_dia = await Avaliacao.count({
+      where: { data: { [Op.gte]: dataAtual } }
+    })
+    res.status(200).json({ clientes, livros, precoMedio: media ? Number(media.preco) : 0, avaliacoes, avaliacoes_dia })
+  } catch (error) {
+    res.status(400).send(error)
+  }
+}
