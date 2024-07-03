@@ -69,7 +69,9 @@ export default function Home() {
           <p className="font-bold mt-2">Nº Livros</p>
         </div>
         <div className="border-green-600 border rounded p-6">
-          <span className="bg-green-100 text-green-800 text-xl text-center font-bold mx-auto block px-2.5 py-5 rounded dark:bg-green-900 dark:text-green-300">R$: {geral.precoMedio.toLocaleString("pt-br", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+          <span className="bg-green-100 text-green-800 text-xl text-center font-bold mx-auto block px-2.5 py-5 rounded dark:bg-green-900 dark:text-green-300">
+            R$: {geral.precoMedio ? geral.precoMedio.toLocaleString("pt-br", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "N/A"}
+          </span>
           <p className="font-bold mt-2 text-center">Preço Médio</p>
         </div>
         <div className="border-purple-600 border rounded p-6">
